@@ -16,6 +16,10 @@ svn export https://github.com/openwrt/openwrt/trunk/package/kernel/mac80211 pack
 svn export https://github.com/DHDAXCW/LubanCat-LEDE/trunk/scripts/mt76 package/kernel/mt76
 svn export https://github.com/openwrt/openwrt/trunk/package/network/services/hostapd package/network/services/hostapd
 
+# Add a feed source
+echo 'src-git fichenx https://github.com/fichenx/openwrt-package' >>feeds.conf.default
+git clone https://github.com/esirplayground/luci-app-v2ray-server.git package/v2ray
+
 # alist
 git clone https://github.com/sbwml/luci-app-alist package/alist
 rm -rf feeds/packages/lang/golang
@@ -127,7 +131,7 @@ popd
 sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 
 # Modify default IP
-sed -i 's/192.168.1.1/192.168.11.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.4.1/g' package/base-files/files/bin/config_generate
 
 # Test kernel 6.1
 rm -rf target/linux/x86/base-files/etc/board.d/02_network
